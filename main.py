@@ -24,7 +24,7 @@ def apple() -> list:
 def sword() -> list:
     '''Sword generator'''
     swrd = [random.randint(7, 15)]
-    print('Герой встретил карликов Оглафа, сковавших чудесный МЕЧ силой в ',
+    print('Герой встретил карликов Оглафа, сковавших чудесный МЕЧ силой в',
           swrd[0], ". Брать будете?  1 - да, 2 - нет")
     return swrd
 
@@ -47,27 +47,27 @@ def game() -> Any:
     hp = hero_1[0]
     attack = hero_1[1]
     while monster_counter < 10:
-        accidental = int(random.randint(1, 3))  # рандомим один из трех вариантов
+        accidental = random.randint(1, 3)  # рандомим один из трех вариантов
         if accidental == 1:
             omnom = apple()
-            attack = attack + omnom[0]
-            print("Здоровье героя", attack, "и меч на", hp)
+            hp = hp + omnom[0]
+            print("Здоровье героя", hp, "и меч на", attack)
             print("----")
         elif accidental == 2:
             swr = sword()
             if choice() == 1:
-                hp = swr[0]
-                print("Здоровье героя", attack, "и меч на", hp)
+                attack = swr[0]
+                print("Здоровье героя", hp, "и меч на", attack)
                 print("----")
         else:
             mo1 = monster()
             print("БОЙ! Геройчик встречает монстра с", mo1[0], "жизнями и силой",
                   mo1[1], "Будем бить? 1 - да, 2 - нет")
             if choice() == 1:
-                attack = attack - mo1[1] * (math.ceil(mo1[0] / hp))
-                print("Здоровье героя", attack, "и меч на", hp)
+                hp = hp - mo1[1] * (math.ceil(mo1[0] / attack))
+                print("Здоровье героя", hp, "и меч на", attack)
                 monster_counter = monster_counter + 1
-                if attack <= 0:
+                if hp <= 0:
                     return print("ПОРАЖЕНИЕ, боец откис на", monster_counter - 1, "фрагах")
                 print("Итого", monster_counter, "фрагов")
                 print("----")
